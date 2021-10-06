@@ -1,4 +1,4 @@
-# Getting Started with AWS Pixel Streaming
+# Pixel Streaming on AWS (Linux)
 
 
 ## Important Notes:
