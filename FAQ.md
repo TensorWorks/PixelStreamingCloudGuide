@@ -52,4 +52,7 @@ If both your instance and local system are running on Windows, you can easily co
 You can find the .exe for RDP at `%systemroot%\system32\mstsc.exe` or simply open the start menu and start typing "Remote desktop protocol"
 Simply enter the instance IP address in the computer section (make sure to add any required ports to the end, seperated by a colon e.g `1.2.3.4:1111`)
 
+## I can't connect to my application running on Windows!
 
+If you have set everything up correctly and still can't connect to your application, it's likely that your instance has its public firewall enabled.
+If you open your server manager and check Windows Defender Firewall in Local Server, you'll see that it is enabled. Click on it and deactivate all the firewalls. You should be able to connect now.
