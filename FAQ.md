@@ -4,13 +4,19 @@ This list is to help solve a variety of issues that you may stumble across. Some
 
 - [Frequently Asked Questions](#frequently-asked-questions)
   - [How do I install Vulkan on Linux?](#how-do-i-install-vulkan-on-linux)
-  - [How to I install Pulse Audio on Linux?](#how-to-i-install-pulse-audio-on-linux)
+  - [How do I install Pulse Audio on Linux?](#how-do-i-install-pulse-audio-on-linux)
   - [How do I install Nvidia Drivers?](#how-do-i-install-nvidia-drivers)
     - [Linux](#linux)
     - [Windows](#windows)
   - [How do I connect to my instance on the cloud?](#how-do-i-connect-to-my-instance-on-the-cloud)
     - [Linux](#linux-1)
     - [Windows](#windows-1)
+  - [I can't connect to my application running on Windows!](#i-cant-connect-to-my-application-running-on-windows)
+  - [How do I make my own instance image so I can skip all this setup?](#how-do-i-make-my-own-instance-image-so-i-can-skip-all-this-setup)
+    - [Amazon Web Services](#amazon-web-services)
+    - [Google Cloud Platform](#google-cloud-platform)
+
+
 
 ## How do I install Vulkan on Linux?
 `sudo apt install vulkan-utils`
@@ -56,3 +62,26 @@ Simply enter the instance IP address in the computer section (make sure to add a
 
 If you have set everything up correctly and still can't connect to your application, it's likely that your instance has its public firewall enabled.
 If you open your server manager and check Windows Defender Firewall in Local Server, you'll see that it is enabled. Click on it and deactivate all the firewalls. You should be able to connect now.
+
+
+## How do I make my own instance image so I can skip all this setup?
+
+Now that you have set up your instance and have it set up the way you like (drivers updated, programs and applications installed etc) you can create a custom AMI for easy set up.
+This will allow you to load your instance straight into your current set up when you next launch it.
+
+Once your instance is set up do the following:
+
+### Amazon Web Services
+* Go to view instances.
+* Right click on your instance, click Image and Templates > Create Image
+* Create a suitable name for your instance (You can not change this later, so make it a suitable name!)
+* Create a description, I highly recommend listing what you have set up on the instance e.g. "NodeJS, Cirrus, GRID Drivers" etc.
+* Add any extra volumes as needed (If you're doing simple pixel streaming testing, the default values should be fine)
+* Click Create Image
+
+
+Done! As you are charged for the storage of your AMI, make sure to check any extra costs involved when it comes to keeping your custom AMI: https://aws.amazon.com/ebs/pricing/
+
+### Google Cloud Platform
+
+Coming Soon!

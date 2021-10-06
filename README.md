@@ -6,4 +6,5 @@ Please note that this guide is being expanded, so if you can't find your use cas
 # Table of Contents
 
 1. [FAQ](FAQ.md)
-2. [Pixel Streaming on AWS (Linux)](AWS%20Linux%20Guide.md)
+2. [Pixel Streaming on AWS (Linux)](Pixel%20Streaming%20on%20AWS%20(Linux).md)
+3. [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md)
