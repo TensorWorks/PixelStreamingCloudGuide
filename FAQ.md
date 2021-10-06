@@ -15,7 +15,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
 ## How do I install Vulkan on Linux?
 `sudo apt install vulkan-utils`
 
-## How to I install Pulse Audio on Linux?
+## How do I install Pulse Audio on Linux?
 `sudo apt-get install -y pulseaudio`
 
 ## How do I install Nvidia Drivers?
@@ -47,7 +47,9 @@ Simply replace the "my-key-pair" with the key pair file you created with the ins
 ### Windows
 
 If both your instance and local system are running on Windows, you can easily connect to your instance using RDP (Remote Desktop Protocol).
-You can find the .exe for RDP at `%systemroot%\system32\mstsc.exe`
+
+
+You can find the .exe for RDP at `%systemroot%\system32\mstsc.exe` or simply open the start menu and start typing "Remote desktop protocol"
 Simply enter the instance IP address in the computer section (make sure to add any required ports to the end, seperated by a colon e.g `1.2.3.4:1111`)
 
 
