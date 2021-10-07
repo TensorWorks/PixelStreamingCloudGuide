@@ -33,6 +33,14 @@ This list is to help solve a variety of issues that you may stumble across. Some
 
 ## How do I install Nvidia Drivers?
 
+Note: If you're running on AWS, they provide instruction on how to install GRID drivers. We recommend this option as in our experience GRID drivers provide much better performance than the standard public drivers.
+
+Please see the relevant guides here:
+
+Windows: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/install-nvidia-driver.html
+
+Linux: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html
+
 ### Linux
 
 You can either run: `sudo apt install nvidia-driver-470` (You can replace 470 with your desired version)
@@ -93,7 +101,6 @@ Done! As you are charged for the storage of your AMI, make sure to check any ext
 
 Coming Soon!
 
-
 ## When I try to connect to the instance through my web browser, nothing shows up/it times out!
 
 If you're trying to join the stream and nothing happens, there are a number of things it could be. 
@@ -146,4 +153,5 @@ For reference, these commands default to -1, which disables any hard limits.
 
 This is actually a blanket error for when the UE4 engine is not connected to pixel streaming.
 
-This can be a result of of the pixel streaming not being enabled in your project, or you haven't pointed the pixel streaming UE4 instance at the signalling server (e.g. `-PixelStreamingIP=127.0.0.1` and `-PixelStreamingPort=8888`)
+This can be a result of of the pixel streaming not being enabled in your project, or you haven't pointed the pixel streaming UE4 instance at the signalling server (e.g. `-PixelStreamingIP=127.0.0.1` and `-PixelStreamingPort=8888`).
+
