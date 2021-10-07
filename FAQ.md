@@ -26,6 +26,14 @@ This list is to help solve a variety of issues that you may stumble across. Some
 
 ## How do I install Nvidia Drivers?
 
+Note: If you're running on AWS, they provide instruction on how to install GRID drivers. We recommend this option as in our experience GRID drivers provide much better performance than the standard public drivers.
+
+Please see the relevant guides here:
+
+Windows: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/install-nvidia-driver.html
+
+Linux: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html
+
 ### Linux
 
 You can either run: `sudo apt install nvidia-driver-470` (You can replace 470 with your desired version)
