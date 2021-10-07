@@ -15,6 +15,13 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I make my own instance image so I can skip all this setup?](#how-do-i-make-my-own-instance-image-so-i-can-skip-all-this-setup)
     - [Amazon Web Services](#amazon-web-services)
     - [Google Cloud Platform](#google-cloud-platform)
+  - [When I try to connect to the instance through my web browser, nothing shows up/it times out!](#when-i-try-to-connect-to-the-instance-through-my-web-browser-nothing-shows-upit-times-out)
+  - [Error received = Vulkan not supported?](#error-received--vulkan-not-supported)
+  - [One person on the stream gets a bad connection, then everyone does!](#one-person-on-the-stream-gets-a-bad-connection-then-everyone-does)
+  - [When I pixel stream on an AMD GPU the quality is unpredictable/intermittent.](#when-i-pixel-stream-on-an-amd-gpu-the-quality-is-unpredictableintermittent)
+  - [I'm getting pixellation in my pre - 4.27 build pixel stream!](#im-getting-pixellation-in-my-pre---427-build-pixel-stream)
+  - [The stream quality is bad!](#the-stream-quality-is-bad)
+  - [Pixel streaming shows "Streamer not connected"](#pixel-streaming-shows-streamer-not-connected)
 
 
 
@@ -85,3 +92,58 @@ Done! As you are charged for the storage of your AMI, make sure to check any ext
 ### Google Cloud Platform
 
 Coming Soon!
+
+
+## When I try to connect to the instance through my web browser, nothing shows up/it times out!
+
+If you're trying to join the stream and nothing happens, there are a number of things it could be. 
+Check the following:
+
+* Make sure your signalling server is properly running
+* Check to make sure you have opened port 80
+* Check the IP restrictions in your server groups. If they are too restrictive they may not let you connect
+* Make sure your instances Windows firewall isn't in the way.
+
+## Error received = Vulkan not supported?
+
+This means you haven't installed either the graphic card drivers or Vulkan. Refer back to the [Installing Drivers](#how-do-i-install-nvidia-drivers) and [Installing Vulkan](#how-do-i-install-vulkan-on-linux) sections.
+
+## One person on the stream gets a bad connection, then everyone does!
+
+One peer is the designated "quality control host", and should he have a bad connection, the stream will appear choppy/pixellated for everyone. 
+
+This is currently a known limitation, but will likely change in future.
+
+## When I pixel stream on an AMD GPU the quality is unpredictable/intermittent.
+
+This is a known issue, AMD support is experimental.
+This will be improved over time as AMD improves their AMF encoder.
+
+## I'm getting pixellation in my pre - 4.27 build pixel stream!
+
+All versions of UE4 prior to 4.27 can suffer from pixellation issues, the only proper solution to this issue is to upgrade your project to version 4.27.
+
+## The stream quality is bad!
+
+Stream quality is largely dictated by the network connection, as well as the performance of the application, low FPS means the application isn't running well.
+
+If you want to hard cap the quality, to help control the result, you can do the following:
+
+```
+-PixelStreamingEncoderMaxQP=<value>
+```
+and
+```
+-PixelStreamingEncoderMinQP=<value>
+```
+
+The lower you set these values, the higher quality the stream, but the higher the bitrate.
+A comfortable setting would be to set the MaxQP to 20, and set the MinQP to 5. This should help improve the stability of the stream.
+
+For reference, these commands default to -1, which disables any hard limits.
+
+## Pixel streaming shows "Streamer not connected"
+
+This is actually a blanket error for when the UE4 engine is not connected to pixel streaming.
+
+This can be a result of of the pixel streaming not being enabled in your project, or you haven't pointed the pixel streaming UE4 instance at the signalling server (e.g. `-PixelStreamingIP=127.0.0.1` and `-PixelStreamingPort=8888`)
