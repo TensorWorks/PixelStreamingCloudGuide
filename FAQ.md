@@ -12,6 +12,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
     - [Linux](#linux-1)
     - [Windows](#windows-1)
   - [I can't connect to my application running on Windows!](#i-cant-connect-to-my-application-running-on-windows)
+  - [I can't install anything on my Windows Instance!](#i-cant-install-anything-on-my-windows-instance)
   - [How do I make my own instance image so I can skip all this setup?](#how-do-i-make-my-own-instance-image-so-i-can-skip-all-this-setup)
     - [Amazon Web Services](#amazon-web-services)
     - [Google Cloud Platform](#google-cloud-platform)
@@ -51,6 +52,7 @@ Or, you can run the "Additional Drivers" application found in your application l
 
 You can visit the [Nvidia drivers download page](https://www.nvidia.com/Download/index.aspx)
 
+Note, when it comes to GRID drivers, you can find the guide to install in each relevant guide.
 
 ## How do I connect to my instance on the cloud?
 
@@ -77,6 +79,20 @@ Simply enter the instance IP address in the computer section (make sure to add a
 
 If you have set everything up correctly and still can't connect to your application, it's likely that your instance has its public firewall enabled.
 If you open your server manager and check Windows Defender Firewall in Local Server, you'll see that it is enabled. Click on it and deactivate all the firewalls. You should be able to connect now.
+
+## I can't install anything on my Windows Instance!
+
+Open the start menu on your instance, and open "Server Manager".
+
+At the top left of the window, click on "Local Server"
+
+You'll see the properties section displaying the instances security settings. You'll need to change the following:
+
+* Windows Defender Firewall: click and disable all the firewalls in the resulting window.
+* Windows Defender Antivirus: click and disable "Real-time protection".
+* IE Enhance Security Configuration: click and turn off for both Administrators and Users.
+
+The above settings stop you from installing a lot of the required programs, as well as prevent you from connecting to your pixel stream later.
 
 
 ## How do I make my own instance image so I can skip all this setup?
