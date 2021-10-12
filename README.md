@@ -1,11 +1,11 @@
 # Pixel Streaming Cloud Guide
 A guide to Pixel Streaming in the cloud. This guide is made to be as easy to follow as possible. We hope to make the use of Pixel Streaming easier and more accessible to everyone.
 
-Currently, these guides are built around using AWS (Amazon Web Service). However, guides for cloud services such as GCP (Google Cloud Platform) and others will be added soon.
+Currently, these guides are built around using AWS (Amazon Web Service). However, guides for cloud services such as GCP (Google Cloud Platform), Azure and others will be added soon.
 
 Please note that this guide is being expanded, so if you can't find your use case now, check back in later!
 
-If you have any improvements or suggestions, please feel free to open an issue on this repository.
+If you have any improvements or suggestions for these guides, please feel free to open an issue on this repository.
 
 This repository isn't a channel to request support with Pixel Streaming. If you're having difficulties, please use the official channels such as UDN or the UE Forums!
 
