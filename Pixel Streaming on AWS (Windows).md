@@ -253,6 +253,8 @@ Try opening multiple different windows and connecting, you’ll see input from o
 
 You can connect from any device!
 
+If you ever wish to simply test it on the instance itself, you can put `127.0.0.1` in a web browser on the instance. I would recommend using Google Chrome for this.
+
 
 ## Shutting Down Your Pixel Stream + Instance
 
