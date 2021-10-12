@@ -5,7 +5,7 @@ This guide is made specifically for Unreal Engine 4.27 and will not work if youâ
 
 This guide is made for an AWS Windows instance, whilst also using Windows locally.
 
-If you're interested in running an AWS Windows instance, and connecting from a Windows machine, please see the [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md) guide! 
+If you're interested in running an AWS Linux instance, and connecting from a Linux machine, please see the [Pixel Streaming on AWS (Linux)](Pixel%20Streaming%20on%20AWS%20(Linux).md)
 
 Please check the FAQ for extra information.
 
