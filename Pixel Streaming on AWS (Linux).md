@@ -8,7 +8,7 @@ This guide is made for an AWS Linux instance, whilst also using Linux locally. T
 
 If you're interested in running an AWS Windows instance, and connecting from a Windows machine, please see the [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md) guide! 
 
-Please check the FAQ for extra information.
+Please check the [FAQ}](FAQ.md) for extra information.
 
 ## Initial Requirements:
 Working with this guide assumes you have the following:
