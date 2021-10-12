@@ -14,4 +14,8 @@ If you have any improvements or suggestions, please feel free to open an issue o
 3. [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md)
 
 
+This guide is released freely and openly under creative commons license. TensorWorks is committed to contributing back to open source software. We're heavily engaged in UE4 Pixel Streaming, we believe the future of Pixel Streaming is the ability to run it at scale cost effectively on the cloud.
+
+If you would like to read more, check out our [blog post](https://tensorworks.com.au/blog/an-open-architecture-for-scalable-pixel-streaming/). If you're interested in Scalable Pixel Streaming, please reach out.
+
 [![TensorLogo](Logo/logo-with-tagline.svg)](https://tensorworks.com.au/)
