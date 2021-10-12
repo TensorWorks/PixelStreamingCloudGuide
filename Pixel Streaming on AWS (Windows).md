@@ -267,3 +267,5 @@ Now that your applications have closed, head back to the AWS website and look fo
 Right click on your instance and click Terminate Instance.
 
 Done!
+
+![TensorLogo](logo-with-tagline.svg)

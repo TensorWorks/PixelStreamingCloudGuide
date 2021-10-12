@@ -247,6 +247,4 @@ Right click on your instance and click Terminate Instance.
 Done!
 
 
-
-
-
+![TensorLogo](logo-with-tagline.svg)
