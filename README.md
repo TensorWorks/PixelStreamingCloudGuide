@@ -7,7 +7,7 @@ Please note that this guide is being expanded, so if you can't find your use cas
 
 If you have any improvements or suggestions, please feel free to open an issue on this repository.
 
-Please note this repository isn't a channel to request support with Pixel Streaming. If you're having difficulties, please use the official channels such as UDN or the UE Forums!
+This repository isn't a channel to request support with Pixel Streaming. If you're having difficulties, please use the official channels such as UDN or the UE Forums!
 
 # Table of Contents
 
