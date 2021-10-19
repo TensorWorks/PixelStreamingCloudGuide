@@ -11,9 +11,15 @@ This repository isn't a channel to request support with Pixel Streaming. If you'
 
 # Table of Contents
 
-1. [FAQ](FAQ.md)
-2. [Pixel Streaming on AWS (Linux)](Pixel%20Streaming%20on%20AWS%20(Linux).md)
-3. [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md)
+   [FAQ](FAQ.md)
+   
+## Amazon Web Services (AWS)
+   [Pixel Streaming on AWS (Linux)](Pixel%20Streaming%20on%20AWS%20(Linux).md)
+   
+   [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md)
+
+## Microsoft Azure
+   [Pixel Streaming on Azure(Windows)](Pixel%20Streaming%20on%20Azure%20(Windows).md)
 
 
 This guide is released freely and openly under creative commons license. TensorWorks is committed to contributing back to open source software. We're heavily engaged in UE4 Pixel Streaming, we believe the future of Pixel Streaming is the ability to run it at scale cost effectively on the cloud.
