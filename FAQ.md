@@ -8,6 +8,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I install Nvidia Drivers?](#how-do-i-install-nvidia-drivers)
     - [Linux](#linux)
     - [Windows](#windows)
+  - [How do I confirm my drivers are installed?](#how-do-i-confirm-my-drivers-are-installed)
   - [How do I connect to my instance on the cloud?](#how-do-i-connect-to-my-instance-on-the-cloud)
     - [Linux](#linux-1)
     - [Windows](#windows-1)
@@ -23,6 +24,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [I'm getting pixellation in my pre - 4.27 build pixel stream!](#im-getting-pixellation-in-my-pre---427-build-pixel-stream)
   - [The stream quality is bad!](#the-stream-quality-is-bad)
   - [Pixel streaming shows "Streamer not connected"](#pixel-streaming-shows-streamer-not-connected)
+  - [How do I test my STUN/TURN Server?](#how-do-i-test-my-stunturn-server)
 
 
 
@@ -54,6 +56,12 @@ You can visit the [Nvidia drivers download page](https://www.nvidia.com/Download
 
 Note, when it comes to GRID drivers, you can find the guide to install in each relevant guide.
 
+## How do I confirm my drivers are installed?
+Simply run `nvidia-smi` in your terminal/command window.
+On windows, you'll likely need to run the command from:
+```
+C:\Program Files\NVIDIA Corporation\NVSMI
+``` 
 ## How do I connect to my instance on the cloud?
 
 This varies depending on what operating system you're using. For further elaboration, please see the full guides.
@@ -171,3 +179,14 @@ This is actually a blanket error for when the UE4 engine is not connected to pix
 
 This can be a result of of the pixel streaming not being enabled in your project, or you haven't pointed the pixel streaming UE4 instance at the signalling server (e.g. `-PixelStreamingIP=127.0.0.1` and `-PixelStreamingPort=8888`).
 
+## How do I test my STUN/TURN Server?
+
+1. Run https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/ using the stun server you will be using, if there is no `srflx` component, then your connection is not able to make contact with the STUN server. If no `srflx` then confirm ports are open and remote client/server is not behind symmetric NAT.
+
+2. Run stuntman http://www.stunprotocol.org/ with your STUN server from inside your AWS machine and confirm the binding test, for example, 
+```   
+./stunclient --verbosity 3 stun1.l.google.com 19302.
+```   
+ If failed binding test then confirm ports are open and remote client/server is not behind symmetric NAT.
+
+3. Confirm whether remote client is not behind symmetric NAT, see console output of this example. If the remote client is behind symmetric NAT you will need to run an additional server on AWS for TURN (this guide may help you), then specify that server to cirrus in the peer connection options.
