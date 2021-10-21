@@ -6,8 +6,10 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I install Vulkan on Linux?](#how-do-i-install-vulkan-on-linux)
   - [How do I install Pulse Audio on Linux?](#how-do-i-install-pulse-audio-on-linux)
   - [How do I install Nvidia Drivers?](#how-do-i-install-nvidia-drivers)
+  - [Amazon Web Service](#amazon-web-service)
     - [Linux](#linux)
     - [Windows](#windows)
+  - [Microsoft Azure](#microsoft-azure)
   - [How do I confirm my drivers are installed?](#how-do-i-confirm-my-drivers-are-installed)
   - [How do I connect to my instance on the cloud?](#how-do-i-connect-to-my-instance-on-the-cloud)
     - [Linux](#linux-1)
@@ -17,6 +19,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I make my own instance image so I can skip all this setup?](#how-do-i-make-my-own-instance-image-so-i-can-skip-all-this-setup)
     - [Amazon Web Services](#amazon-web-services)
     - [Google Cloud Platform](#google-cloud-platform)
+    - [Microsoft Azure](#microsoft-azure-1)
   - [When I try to connect to the instance through my web browser, nothing shows up/it times out!](#when-i-try-to-connect-to-the-instance-through-my-web-browser-nothing-shows-upit-times-out)
   - [Error received = Vulkan not supported?](#error-received--vulkan-not-supported)
   - [One person on the stream gets a bad connection, then everyone does!](#one-person-on-the-stream-gets-a-bad-connection-then-everyone-does)
@@ -38,6 +41,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
 
 ## How do I install Nvidia Drivers?
 
+## Amazon Web Service
 Note: If you're running on AWS, they provide instruction on how to install GRID drivers. We recommend this option as in our experience GRID drivers provide much better performance than the standard public drivers.
 
 Please see the relevant guides here:
@@ -57,6 +61,18 @@ Or, you can run the "Additional Drivers" application found in your application l
 You can visit the [Nvidia drivers download page](https://www.nvidia.com/Download/index.aspx)
 
 Note, when it comes to GRID drivers, you can find the guide to install in each relevant guide.
+
+## Microsoft Azure
+
+Azure offers an incredibly useful Extensions feature. Unlike the other cloud services, you can simply add the Nvidia requirements pre-launch of the instance.
+
+When you get to the "Advanced" step of making your instance, click "Select an extension to install" and type "Nvidia" in the search bar. You should be presented with a "NVIDIA GPU Driver Extension", select that and click Next.
+
+For other options to install drivers, see their guide here:
+
+Windows: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/n-series-driver-setup
+
+Linux: https://docs.microsoft.com/en-us/azure/virtual-machines/linux/n-series-driver-setup
 
 ## How do I confirm my drivers are installed?
 Simply run `nvidia-smi` in your terminal/command window.
@@ -80,7 +96,6 @@ Simply replace the "my-key-pair" with the key pair file you created with the ins
 ### Windows
 
 If both your instance and local system are running on Windows, you can easily connect to your instance using RDP (Remote Desktop Protocol).
-
 
 You can find the .exe for RDP at `%systemroot%\system32\mstsc.exe` or simply open the start menu and start typing "Remote desktop protocol"
 Simply enter the instance IP address in the computer section (make sure to add any required ports to the end, seperated by a colon e.g `1.2.3.4:1111`)
@@ -124,6 +139,10 @@ Once your instance is set up do the following:
 Done! As you are charged for the storage of your AMI, make sure to check any extra costs involved when it comes to keeping your custom AMI: https://aws.amazon.com/ebs/pricing/
 
 ### Google Cloud Platform
+
+Coming Soon!
+
+### Microsoft Azure
 
 Coming Soon!
 
