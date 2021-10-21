@@ -8,7 +8,7 @@ This guide is made for an Azure Linux instance, whilst also using Linux locally.
 
 If you're interested in running an Azure Windows instance, and connecting from a Windows machine, please see the [Pixel Streaming on Azure (Windows)](Pixel%20Streaming%20on%20Azure%20(Windows).md) guide! 
 
-Please check the [FAQ}](FAQ.md) for extra information.
+Please check the [FAQ](FAQ.md) for extra information.
 
 ## Initial Requirements:
 Working with this guide assumes you have the following:
