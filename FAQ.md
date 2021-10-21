@@ -25,6 +25,8 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [The stream quality is bad!](#the-stream-quality-is-bad)
   - [Pixel streaming shows "Streamer not connected"](#pixel-streaming-shows-streamer-not-connected)
   - [How do I test my STUN/TURN Server?](#how-do-i-test-my-stunturn-server)
+    - [STUN](#stun)
+    - [TURN](#turn)
 
 
 
@@ -181,6 +183,8 @@ This can be a result of of the pixel streaming not being enabled in your project
 
 ## How do I test my STUN/TURN Server?
 
+### STUN
+
 1. Run https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/ using the stun server you will be using, if there is no `srflx` component, then your connection is not able to make contact with the STUN server. If no `srflx` then confirm ports are open and remote client/server is not behind symmetric NAT.
 
 2. Run stuntman http://www.stunprotocol.org/ with your STUN server from inside your AWS machine and confirm the binding test, for example, 
@@ -190,3 +194,19 @@ This can be a result of of the pixel streaming not being enabled in your project
  If failed binding test then confirm ports are open and remote client/server is not behind symmetric NAT.
 
 3. Confirm whether remote client is not behind symmetric NAT, see console output of this example. If the remote client is behind symmetric NAT you will need to run an additional server on AWS for TURN (this guide may help you), then specify that server to cirrus in the peer connection options.
+
+### TURN
+
+Once your signalling server and application are up and running, there is a very easy way to test the TURN server via Firefox.
+
+1. Open a new tab in firefox
+2. Enter `about:config` in the URL
+Search for:
+```
+media.peerconnection.ice.relay_only
+```
+3. Set the result to "True".
+
+This will force all connections to use the TURN relay. 
+
+4. Try and connect to your application in a new tab. If the TURN server is working properly, it should connect. If it does not, it will likely get stuck and fail to connect.

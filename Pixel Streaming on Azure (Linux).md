@@ -1,19 +1,19 @@
-# Pixel Streaming on AWS (Linux)
+# Pixel Streaming on Azure (Linux)
 
 
 ## Important Notes:
 This guide is made specifically for Unreal Engine 4.27 and will not work if you’re using any earlier versions.
 
-This guide is made for an AWS Linux instance, whilst also using Linux locally. The information below can still be used from a Windows machine, but will require a few adjustments.
+This guide is made for an Azure Linux instance, whilst also using Linux locally. The information below can still be used from a Windows machine, but will require a few adjustments.
 
-If you're interested in running an AWS Windows instance, and connecting from a Windows machine, please see the [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md) guide! 
+If you're interested in running an Azure Windows instance, and connecting from a Windows machine, please see the [Pixel Streaming on Azure (Windows)](Pixel%20Streaming%20on%20Azure%20(Windows).md) guide! 
 
 Please check the [FAQ}](FAQ.md) for extra information.
 
 ## Initial Requirements:
 Working with this guide assumes you have the following:
 
-- An active account with Amazon Web Services (AWS)
+- An active account with Azure (Azure)
 - A packaged, pixel streaming ready application
 
 For more information on this, please familiarize yourself with the following documents:
@@ -28,50 +28,98 @@ https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/PixelStreaming/Host
 https://docs.unrealengine.com/4.27/en-US/Resources/Showcases/PixelStreamingShowcase/
 Or any other Pixel Streaming ready application.
 
+
 We’ll be using Filezilla to transfer files to the instance, if you don’t wish to use Filezilla you’ll have to use SCP.
-https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html
+https://docs.Azure.amazon.com/AzureEC2/latest/UserGuide/AccessingInstancesLinux.html
 
 This link also describes SSH, which we will be using in this guide.
 
-## Setting up your AWS server
-Log into your AWS account.
+## Setting up your Azure server
 
-Select Launch a Virtual Machine.
+### **Basics**
 
-Select your AMI, I recommend the `Deep Learning AMI Ubuntu 18.04`, if you use a different AMI it is your responsibility to install the correct NVIDIA drivers and CUDA Toolkit.
+Log into your Azure account.
 
-Choose an Instance Type.
+Make sure you're on your account home page:
+https://portal.azure.com/#home
 
-Filter by **g4dn**, for the Unreal Pixel Streaming Demo I recommend the **8 vCPUs 32 GiB** option.
+Select Virtual Machines, then Create > Virtual Machine at the top left.
 
-For this example, you can skip steps up until step 6.
+You should now be on the "Create a virtual machine" page. Thankfully, Azure makes it incredibly easy to create a test environment for Pixel Streaming!
 
-### Step 6, Configure Security Groups
+You can leave the Subscription box as your current subscription. For the Resource group, create a new group, you can call this anything you like (I suggest something easy, like training or test).
 
-Leave the existing rule and add 2 new rules:
+Give your virtual machine a name, for this example I'll call it GuideTestPS.
+
+Set your Region to the most suitable option. In this example you can just set it to your closest region, but in future, different regions have access to different Images.
+
+Leave the Availability Options and Security type as default values.
+
+**Important Step!*** 
+For your image, select "See all images", Select AI + Machine Learning on the left panel, scroll down and select `NVIDIA Image for AI using GPUs` > `v21.06.0 -Gen1`.
+
+You should now be back on the Create a virtual machine page. Leave Azure Spot Instance unticked, and make sure the Size category has:
 ```
-HTTP, TCP, 80, Custom, 0.0.0.0/0,::/0
+Standard_NV6 - 6 vcpus, 56GiB memory
+```
+We have done the above 2 steps to ensure we are using Nvidia resources. Much like the other guides, it's all to make sure our Pixel Streaming application runs smoothly!
+
+For the Authentication type, set it to SSH. Fill in a suitable username and key pair name.. This will be used to connect to the instance so don't forget these details or you will have to re-create the instance!
+
+You are now done with the basic set up, click Next: Disks.
+
+### **Disks**
+
+You can leave these options at default values. Click Next: Networking.
+
+### **Networking**
+
+You'll see that it has filled in the fields with (new)vmName, you can leave these as is.
+
+Underneath the Configure Network Security Group dropdown bar, you should see `Create new`. Click on that.
+
+Here, you can add ports as required. Alongside the default ones that are there, make sure you have the following ports added.
+
+```
+Protocol: Any, Destination port range: 80, Source port ranges: *
 ```
 ```
-Custom TCP, TCP, 8888, Custom, 0.0.0.0/0,::/0
+Protocol: Any, Destination port range: 8888, Source port ranges: *
 ```
 
-Setting `0.0.0.0/0,::/0` will permit all IP addresses to connect to the instance. Please specify any restrictions as needed. For this test, you can safely permit all IP addresses.
+Click OK to go back to the Networking window.
 
-Review and launch, make sure to read the warnings before proceeding. Once you're satisfied, hit launch.
+Click Next: Management
 
-Choose either an existing key pair, or create a new key pair.
-*Do not lose the key pair file provided!* You can not retrieve it and will have to create a new one if you do.
+### **Management**
 
-Head to the View Instances page.
+You can leave these values default, click Next: Advanced.
 
-Give the instance time to finish its status checks, you can spend this time by checking the instance details by checking its tick box.
-It may be worth copying the following into a doc, as you’ll need these values.
+### **Advanced**
 
-- Public IPv4 DNS
-- Public IPv4 Address
+Windows Azure offers an incredibly useful Extensions feature. Unlike the other cloud services, you can simply add the Nvidia requirements pre-launch of the instance.
 
-You’ll be using the public IPv4 address to connect to the instance application once it’s up and running.
+Click "Select an extension to install"  and look for "NVIDIA GPU Driver Extension", select that and click Next.
+
+
+Click Next: Tags
+
+### Tags
+
+Skip this step, click Next: Review + Create.
+
+### **Review + Create**
+
+Have a quick read to make sure your settings are correct and once you're satisfied, hit Create.
+(Note the hourly price at the top of this window).
+
+It'll take you to an overview screen. Wait until it states "Your deployment is complete. This can take a few minutes.
+
+When it prompts you to download the .pem key file, make sure you do so and store it in a safe location. You will need this file to connect to your instance!
+
+Your instance is now up and running, Congratulations!
+
+Click "Go to resource" to see options for your instance.
 
 ## Transferring Pixel Streaming Demo/Application onto the Instance
 
@@ -82,9 +130,9 @@ Select File > Site Manager
 In the General tab, fill the following:
 
 - Protocol: SFT - SSH FIle Transfer Protocol
-- Host: Your Instances Public IPv4 DNS
+- Host: Your Instances Public IPv4
 - Logon Type: Key File
-- User: ubuntu
+- User: The username you set
 - Key file: Browse to your key file
 - Connect
 
@@ -95,27 +143,32 @@ Browse to your zipped application on the left, drag the zip to your desired loca
 
 Depending on your application and connection speed, this can take a while, but you can move on to the next step while it’s uploading.
 
-
 ## Connecting to Instance via SSH
 Open a new terminal
 
 SSH comes pre-installed on some systems, confirm if you have it by typing `ssh` in terminal.
 
-If not, refer back to: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html
+On your instance information page/resource window, press "Connect" at the top left and select SSH.
+
+You'll see a convenient 4 step procedure for connecting to your instance. If you have SSH installed you can skip step 1.
+
+If you copy the example in step 4, replace the "private key path" with your own and put the full command in a terminal window, you will connect to the instance.
 
 Use the following command to connect to your instance (replace the necessary fields with your own information:
 
 ```
-ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-public-dns-name
+ssh -i /path/my-key-pair.pem my-instance-user-name@my-instance-IP
 ```
 
 In this case:
 - The key pair.pem is the key pair file you downloaded earlier
-- The instance user name is ubuntu
-- The public dns is the public IPv4 DNS from your instance
+- The instance user name is the user name you set in the basics segment of the set up.
+- I suggest copying the example command on the connect window in step 4, as this will have automatically put the correct username and IP in the command.
 
 It will state that **“The authenticity of host can't be established”**, type yes and press enter.
 Wait a moment and the terminal will connect.
+
+You'll know it's finished connecting when the directory in the terminal becomes "UserName@InstanceName"
 
 I recommend opening 2 terminal tabs and connecting twice, it’ll make it easier to navigate and set up your signalling server and application, though this isn’t mandatory. (You won’t have to confirm authenticity in the second window).
 
@@ -123,7 +176,7 @@ Done!
 
 ## Preparing Prerequisites
 
-Now that you’re connected to your AWS instance, you’ll need to prepare a few packages so your application can run.
+Now that you’re connected to your Azure instance, you’ll need to prepare a few packages so your application can run.
 These packages may vary depending on your needs, but for this example we need Vulkan and Pulse Audio. 
 
 
@@ -163,7 +216,7 @@ Now you’ll need to move the 2 terminal windows into their relevant directories
 In one terminal window, enter:
 
 ```
-cd ~/AppFileName/LinuxNoEditor/Samples/PixelStreaming/WebServers/SignallingWebServer/platform_scripts/bash
+cd ~/AppFileName/LinuxNoEditor/Samples/PixelStreaming/WebServers/SignallingWebServer/ platform_scripts/bash
 ```
 In the other enter:
 
@@ -229,20 +282,15 @@ Have fun playing with your pixel stream!
 
 Try opening multiple different windows and connecting, you’ll see input from one window propagate across all the connected peers.
 
-
-## Shutting Down Your Pixel Stream
+## Shutting Down Your Pixel Stream + Instance
 
 Once you’re done playing with your shiny new stream, it’s important to close all your running applications and instances if you don’t need them.
 
-In your terminal window running the application, press CTRL + C
-This stops any running processes in that window.
-Do the same for your other terminal window running the signalling server.
+Make sure to close your signalling server window. Additionally, as it is rendered off-screen, if you wanted to shut down the running application, you can open task manager > processes and close the running application.
 
-Now that your applications have closed, head back to the AWS website and look for your running instance.
+Now that your applications have closed, head back to the Azure website and look for your running instance.
 
-Right click on your instance and click Terminate Instance.
-
-Done!
+On the resource page (or Virtual Machines page), click Delete at the top. It will ask for confirmation. Click okay and you're done!
 
 
 [![TensorLogo](Logo/logo-with-tagline.svg)](https://tensorworks.com.au/)
