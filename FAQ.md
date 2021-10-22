@@ -6,7 +6,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I install Vulkan on Linux?](#how-do-i-install-vulkan-on-linux)
   - [How do I install Pulse Audio on Linux?](#how-do-i-install-pulse-audio-on-linux)
   - [How do I install Nvidia Drivers?](#how-do-i-install-nvidia-drivers)
-  - [Amazon Web Service](#amazon-web-service)
+  - [Amazon Web Services](#amazon-web-services)
     - [Linux](#linux)
     - [Windows](#windows)
   - [Microsoft Azure](#microsoft-azure)
@@ -41,7 +41,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
 
 ## How do I install Nvidia Drivers?
 
-## Amazon Web Service
+## Amazon Web Services
 Note: If you're running on AWS, they provide instruction on how to install GRID drivers. We recommend this option as in our experience GRID drivers provide much better performance than the standard public drivers.
 
 Please see the relevant guides here:
