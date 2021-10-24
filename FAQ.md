@@ -17,7 +17,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [I can't connect to my application running on Windows!](#i-cant-connect-to-my-application-running-on-windows)
   - [I can't install anything on my Windows Instance!](#i-cant-install-anything-on-my-windows-instance)
   - [How do I make my own instance image so I can skip all this setup?](#how-do-i-make-my-own-instance-image-so-i-can-skip-all-this-setup)
-    - [Amazon Web Services](#amazon-web-services)
+    - [Amazon Web Services](#amazon-web-services-1)
     - [Google Cloud Platform](#google-cloud-platform)
     - [Microsoft Azure](#microsoft-azure-1)
   - [When I try to connect to the instance through my web browser, nothing shows up/it times out!](#when-i-try-to-connect-to-the-instance-through-my-web-browser-nothing-shows-upit-times-out)

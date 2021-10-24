@@ -268,4 +268,4 @@ Right click on your instance and click Terminate Instance.
 
 Done!
 
-[![TensorLogo](Logo/logo-with-tagline.svg)](https://tensorworks.com.au/)
+![TensorLogo](Logo/logo.svg)

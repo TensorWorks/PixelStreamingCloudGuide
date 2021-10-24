@@ -291,4 +291,4 @@ Now that your applications have closed, head back to the Azure website and look 
 On the resource page (or Virtual Machines page), click Delete at the top. It will ask for confirmation. Click okay and you're done!
 
 
-[![TensorLogo](Logo/logo-with-tagline.svg)](https://tensorworks.com.au/)
+![TensorLogo](Logo/logo.svg)
