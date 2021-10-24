@@ -50,7 +50,7 @@ Set your Region to the most suitable option. In this example you can just set it
 Leave the Availability Options and Security type as default values.
 
 **Important Step!*** 
-For your image, select `Windows Server 2019 Datacenter - Gen1`. This allows us to us an NV series GPU.
+For your image, select `Windows Server 2019 Datacenter - Gen1`. This allows us to use an NV series GPU.
 
 Leave Azure Spot Instance unticked, and make sure the Size category has:
 ```
