@@ -229,3 +229,5 @@ media.peerconnection.ice.relay_only
 This will force all connections to use the TURN relay. 
 
 4. Try and connect to your application in a new tab. If the TURN server is working properly, it should connect. If it does not, it will likely get stuck and fail to connect.
+
+Alternatively, you can see our page on doing a STUN/TURN Debug using pion/turn [here](ICE%20Debugging.md).
