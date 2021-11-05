@@ -31,6 +31,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
     - [STUN](#stun)
     - [TURN](#turn)
   - [TURN/relay candidates are not generated in Chrome?](#turnrelay-candidates-are-not-generated-in-chrome)
+  - [Getting extra information out of Chrome](#getting-extra-information-out-of-chrome)
 
 
 
@@ -241,3 +242,15 @@ Chrome will only let you use TURN if you are running TURN on port 53, 80, 443, 1
 
 **Windows**
 `Chrome.exe --force-fieldtrials="WebRTC-Turn-AllowSystemPorts/Enabled/"`
+
+## Getting extra information out of Chrome
+When a WebRTC connection is not being made for whatever reason one key point of failure is on the browser side. There are a few different places to look within Chrome. For example:
+
+1. chrome://webrtc-internals (This should be the first place you look for problems) - FireFox has a similar (but different) page called about:webrtc that you should cross reference with - particularly for ICE candidate failures.
+2. Launch Chrome through the terminal with extra logging ([full details here](https://www.chromium.org/for-testers/enable-logging)).
+
+**Print to the console**
+`chrome.exe --enable-logging=stderr --v=1`
+
+**Print stderr and stdout to a file**
+`chrome --enable-logging=stderr --v=1 > log.txt 2>&1`
