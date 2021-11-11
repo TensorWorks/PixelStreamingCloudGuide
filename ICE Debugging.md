@@ -2,6 +2,8 @@
 
 This guide is designed to help you test your STUN/TURN connectivity using [Pion/TURN](https://github.com/pion/turn/tree/master/examples).
 
+**_Note:_** This turn server is not designed for production. Using this outside of a testing scenario can result in poor performance.
+
 This guide is broken up into the following steps:
 
 1. Setting up Pion/TURN Server on your cloud machine
