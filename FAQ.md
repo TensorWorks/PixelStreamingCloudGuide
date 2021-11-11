@@ -30,6 +30,8 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I test my STUN/TURN Server?](#how-do-i-test-my-stunturn-server)
     - [STUN](#stun)
     - [TURN](#turn)
+  - [TURN/relay candidates are not generated in Chrome?](#turnrelay-candidates-are-not-generated-in-chrome)
+  - [Getting extra information out of Chrome](#getting-extra-information-out-of-chrome)
 
 
 
@@ -231,3 +233,24 @@ This will force all connections to use the TURN relay.
 4. Try and connect to your application in a new tab. If the TURN server is working properly, it should connect. If it does not, it will likely get stuck and fail to connect.
 
 Alternatively, you can see our page on doing a STUN/TURN Debug using pion/turn [here](ICE%20Debugging.md).
+
+## TURN/relay candidates are not generated in Chrome?
+Chrome will only let you use TURN if you are running TURN on port 53, 80, 443, 1024, or any port above 1024 [see WebRTC source](https://chromium.googlesource.com/external/webrtc/+/refs/heads/master/p2p/base/turn_port.cc#937). We typically recommend you run TURN on UDP port 19303. However, if you desperately need to run TURN on a port below 1024 you can do so by launching Chrome with a special field trial flag, like so:
+
+**MacOS**
+`/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --force-fieldtrials="WebRTC-Turn-AllowSystemPorts/Enabled/"`
+
+**Windows**
+`Chrome.exe --force-fieldtrials="WebRTC-Turn-AllowSystemPorts/Enabled/"`
+
+## Getting extra information out of Chrome
+When a WebRTC connection is not being made for whatever reason one key point of failure is on the browser side. There are a few different places to look within Chrome. For example:
+
+1. chrome://webrtc-internals (This should be the first place you look for problems) - FireFox has a similar (but different) page called about:webrtc that you should cross reference with - particularly for ICE candidate failures.
+2. Launch Chrome through the terminal with extra logging ([full details here](https://www.chromium.org/for-testers/enable-logging)).
+
+**Print to the console**
+`chrome.exe --enable-logging=stderr --v=1`
+
+**Print stderr and stdout to a file**
+`chrome --enable-logging=stderr --v=1 > log.txt 2>&1`
