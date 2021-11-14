@@ -4,7 +4,7 @@
 ## Important Notes:
 This guide is made specifically for Unreal Engine 4.27 and will not work if you’re using any earlier versions.
 
-If you're interested in running an Azure Windows instance, and connecting from a Windows machine, please see the [Pixel Streaming on Azure (Windows)](Pixel%20Streaming%20on%20Azure%20(Windows).md) guide! 
+If you're interested in running an Azure Windows instance, please see the [Pixel Streaming on Azure (Windows)](Pixel%20Streaming%20on%20Azure%20(Windows).md) guide! 
 
 Please check the [FAQ](FAQ.md) for extra information.
 

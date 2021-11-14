@@ -5,7 +5,7 @@ This guide is made specifically for Unreal Engine 4.27 and will not work if youâ
 
 This guide is made for an GCP Windows instance, whilst also using Windows locally.
 
-If you're interested in running an GCP Linux instance, and connecting from a Linux machine, please see the [Pixel Streaming on GCP (Linux)](Pixel%20Streaming%20on%20GCP%20(Linux).md)
+If you're interested in running an GCP Linux instance, please see the [Pixel Streaming on GCP (Linux)](Pixel%20Streaming%20on%20GCP%20(Linux).md)
 
 Please check the [FAQ](FAQ.md) for extra information.
 
