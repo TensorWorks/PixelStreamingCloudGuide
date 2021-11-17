@@ -246,8 +246,4 @@ Simply tick the box next to your instance, then click delete at the top of the w
 
 Done!
 
-<<<<<<< Updated upstream
-![TensorLogo](Logo/logo.svg)
-=======
 [![TensorWorks Logo](Logo/logo.svg)](https://tensorworks.com.au/)
->>>>>>> Stashed changes
