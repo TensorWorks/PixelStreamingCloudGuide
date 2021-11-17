@@ -158,7 +158,7 @@ Head to: https://nodejs.org/en/download/ on your instance, and download the wind
 
 Proceed through the installer and follow the steps.
 
-When you get to the Tools for Native Modules step, it'll ask if you want to "Automaticcaly install the necessary tools. Note, this will also install Chocolatey." Tick the box and click next.
+When you get to the Tools for Native Modules step, it'll ask if you want to "Automatically install the necessary tools. Note, this will also install Chocolatey." Tick the box and click next.
 
 Once node has finished installing, a command window will pop up, prompting to install chocolatey. Press any key and let powershell do its thing. This may take a few minutes.
 
