@@ -261,19 +261,19 @@ When a WebRTC connection is not being made for whatever reason one key point of 
 
 In some applications you may want your mouse to stay visible while interacting with the stream. As a large portion of applications in UE are first/third person, it will capture the windows mouse when you join the stream and make it invisible by default. Doing the following steps means you'll need to click and hold to turn the camera.
 
-Firstly in your Epic project do the following:
+Firstly in your UE project do the following:
 
 1. Open Edit > Project Settings > User Interface
 2. Head to the User Interface section
 3. Under Software Cursors, click +
 4. Select "Default" as the mouse option in the drop down and "HiddenCursor" under the second class dropdown.
 
-This hides the default Epic cursor. This is important as you will likely end up with 2 cursors at the same time (which is very disorientating).
+This hides the default UE cursor. This is important as you will likely end up with 2 cursors at the same time (which is very disorientating).
 
 Secondly, you'll need to edit App.js. You can find it under Samples > PixelStreaming > WebServers > SignallingWebServer > Scripts.
 
-Line 857 has a segment that specifies ControlSchemeType as seen here:
-```
+Around line 850 of App.js there is some a segment that specifies ControlSchemeType as seen here:
+```js
 const ControlSchemeType = {
     // A mouse can lock inside the WebRTC player so the user can simply move the
     // mouse to control the orientation of the camera. The user presses the
@@ -285,11 +285,32 @@ const ControlSchemeType = {
     HoveringMouse: 0
 ```
 
-Set `LockedMouse: 0` and `HoveringMouse: 0`, this will ensure that it does not lock your mouse to the stream.
+Just below that is where there is an JS object where the control scheme is specified, like so:
 
-Lastly, we need to ensure the mouse isn't hidden, head to line 1552:
+```js
+let inputOptions = {
+    // The control scheme controls the behaviour of the mouse when it interacts
+    // with the WebRTC player.
+    controlScheme: ControlSchemeType.LockedMouse,
 
+    // Browser keys are those which are typically used by the browser UI. We
+    // usually want to suppress these to allow, for example, UE4 to show shader
+    // complexity with the F5 key without the web page refreshing.
+    suppressBrowserKeys: true,
+
+    // UE4 has a faketouches option which fakes a single finger touch when the
+    // user drags with their mouse. We may perform the reverse; a single finger
+    // touch may be converted into a mouse drag UE4 side. This allows a
+    // non-touch application to be controlled partially via a touch device.
+    fakeMouseWithTouches: false
+};
 ```
+
+You can set `controlScheme: ControlSchemeType.HoveringMouse` to ensure that it does not lock your mouse to the stream.
+
+Lastly, we need to ensure the mouse isn't hidden, head to around line 1550:
+
+```js
 function registerHoveringMouseEvents(playerElement) {
     //styleCursor = 'none'; // We will rely on UE4 client's software cursor.
     styleCursor = 'default';  // Showing cursor
