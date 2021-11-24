@@ -177,10 +177,18 @@ Head to your projects cmd directory, found in:
 WindowsNoEditor\Samples\PixelStreaming\WebServers\SignallingWebServer\platform_scripts\cmd
 ```
 
-You'll see a number of .bat files in here, but don't worry! Many of them run on each other.
+You'll see a variety of files in here, you can always refer to the README in this folder to see what each of them do. But our first step is to install the pre-requisites to run a signalling server!
 
-Go ahead and run `runAWS_WithTurn.bat`.
-This will open your signalling server window and run the setup.bat, which checks that npm is installed. Once that is verified, the output should end in:
+1. Open your start menu and search for Powershell
+2. Right click Windows Powershell and run as administrator
+3. In your powershell window enter `cd PATH\WindowsNoEditor\Samples\PixelStreaming\WebServers\SignallingWebServer\platform_scripts\cmd` (Replacing PATH with your own file path)
+4. Enter `.\setup.ps1` 
+
+This should automatically install all the required components to run your signalling server. 
+Furthermore, now that you have done this, you do not need powershell to be elevated, so to run the other scripts, you can simply right click them and select "Run with Powershell"
+
+Go ahead and run `Start_WithTURN_SignallingServer.ps1`.
+This will open your signalling server window. Once that is done, the output should end in:
 
 ```
 00:36:55.279 WebSocket listening to Streamer connections on :8888

@@ -180,13 +180,11 @@ This is definitely not a mandatory step, and if you just want to do a quick test
 
 In the terminal window that’s in the bash directory, enter `ls` to see the directories contents.
 
-You should see a variety of `.sh` files, many of them run on each other so don’t fret!
+You should see a variety of `.sh` files, you can always refer to the README in the folder to see what each file does.
 
-Type `./setup.sh`
+Type `./setup.sh`, this will install all the pre-requisites to run a signalling server!
 
-You may get an error message warning of a vulnerability enter `npm audit fix` to rectify.
-
-Type `./runAWS_WithTurn.sh` 
+Once that is done type `./Start_WithTURN_SignallingServer.sh` 
 
 If you have done all of the above correctly, you should see:
 ```

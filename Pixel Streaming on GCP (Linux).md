@@ -213,13 +213,11 @@ Change your directory on the instance to your signal server files, the directory
 
 Now that you're in the bash directory, enter `ls` to see the directories contents.
 
-You should see a variety of `.sh` files, many of them run on each other so don’t fret!
+You should see a variety of `.sh` files, you can always refer to the README in the folder to see what each file does.
 
-Type `./setup.sh -y`
+Type `./setup.sh`, this will install all the pre-requisites to run a signalling server!
 
-This will install a variety of required elements the signalling server needs to function.
-
-Once complete, you can start the signalling server by running: `./Start_SignallingServer.sh` 
+Once that is done type `./Start_WithTURN_SignallingServer.sh` 
 
 If you have done all of the above correctly, you should see:
 ```
@@ -228,9 +226,7 @@ WebSocket listening to Players connections on :80
 Http listening on *: 80
 ```
 
-If you see the above, then your signalling server is up and running! 
-
-With all of this set up, you now have a signalling server ready!
+If you see the above, then your signalling server is up and running!
 
 ## Running Your Application
 
