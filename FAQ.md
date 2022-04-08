@@ -33,6 +33,7 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [TURN/relay candidates are not generated in Chrome?](#turnrelay-candidates-are-not-generated-in-chrome)
   - [Getting extra information out of Chrome](#getting-extra-information-out-of-chrome)
   - [How do I stop the Pixel Stream from capturing and hiding my mouse?](#how-do-i-stop-the-pixel-stream-from-capturing-and-hiding-my-mouse)
+  - [Why does my Bitrate drop heavily on an Android/Samsung mobile connected to Wifi?](#why-does-my-bitrate-drop-heavily-on-an-androidsamsung-mobile-connected-to-wifi)
 
 
 
@@ -324,3 +325,18 @@ Now if you start your stream, when you click to join the mouse should stay visib
 
 If you want to solely use the UE default cursor, you can simply reverse these steps! Make sure you don't add the HiddenCursor class to the DefaultCursor!
 
+
+## Why does my Bitrate drop heavily on an Android/Samsung mobile connected to Wifi?
+
+We have recently discovered a feature in some Samsung/Android devices that can cause moderate to severe reduction stream quality. If your mobile has this setting enabled, it can compromise stream quality for you and other connected peers. 
+
+To rectify the issue, navigate to the following on your mobile:
+
+1. Settings > Connections > Wifi
+2. Select the cog/settings icon next to your connected Wifi network.
+3. Select "View more".
+4. Select "Metered network".
+5. Select "Treat as unmetered".
+6. Restart Wifi on your mobile.
+
+This should rectify the issue. For some reason, despite having the bandwidth to handle the stream connection, this setting causes the pixel stream to consider your connection poor. If you're the quality control host on the stream, it will degrade the stream for all the peers. Interestingly, if you are NOT the quality control host, you can enjoy the stream with no reduction in stream quality!
