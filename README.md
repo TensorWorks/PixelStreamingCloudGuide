@@ -13,24 +13,14 @@ This repository isn't a channel to request support with Pixel Streaming. If you'
 
    [FAQ](FAQ.md)
    
-## Amazon Web Services (AWS)
-   [Pixel Streaming on AWS (Linux)](Pixel%20Streaming%20on%20AWS%20(Linux).md)
-   
-   [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md)
+## Pixel Streaming Guides
+Each version of Unreal Engine has substantial changes in the Pixel Streaming plugin. It's recommended to use the matching guide to your engine version.
 
-## Microsoft Azure
-   [Pixel Streaming on Azure (Linux)](Pixel%20Streaming%20on%20Azure%20(Linux).md) 
+Each link below will take you to all the appropriate guides for your Unreal Engine version for a variety of cloud platforms.
 
-   [Pixel Streaming on Azure (Windows)](Pixel%20Streaming%20on%20Azure%20(Windows).md)
-   
-## Google Cloud Platform (GCP)
-   [Pixel Streaming on GCP (Linux)](Pixel%20Streaming%20on%20GCP%20(Linux).md)
-   
-   [Pixel Streaming on GCP (Windows)](Pixel%20Streaming%20on%20GCP%20(Windows).md)
+[Unreal Engine 4.27](Pixel%20Streaming%20UE4-27.md)
 
-## Test Tools
-   [Pion/TURN ICE Candidate Debugging](ICE%20Debugging.md)
-
+[Unreal Engine 5](Pixel%20Streaming%20UE5.md) (Coming soon)
 
 ## Legal 
 
