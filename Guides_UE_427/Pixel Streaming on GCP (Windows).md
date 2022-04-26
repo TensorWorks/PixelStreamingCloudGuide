@@ -254,4 +254,4 @@ Simply tick the box next to your instance, then click delete at the top of the w
 
 Done!
 
-[![TensorWorks Logo](Logo/logo.svg)](https://tensorworks.com.au/)
+[![TensorWorks Logo](../Logo/logo.svg)](https://tensorworks.com.au/)
