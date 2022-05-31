@@ -7,7 +7,7 @@ This guide is made for an Azure Windows instance, whilst also using Windows loca
 
 If you're interested in running an Azure Linux instance, please see the [Pixel Streaming on Azure (Linux)](Pixel%20Streaming%20on%20Azure%20(Linux).md)
 
-Please check the [FAQ](FAQ.md) for extra information.
+Please check the [FAQ](../FAQ.md) for extra information.
 
 ## Initial Requirements:
 Working with this guide assumes you have the following:

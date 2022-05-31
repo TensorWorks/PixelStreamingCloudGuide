@@ -7,7 +7,7 @@ This guide is made for an GCP Windows instance, whilst also using Windows locall
 
 If you're interested in running an GCP Linux instance, please see the [Pixel Streaming on GCP (Linux)](Pixel%20Streaming%20on%20GCP%20(Linux).md)
 
-Please check the [FAQ](FAQ.md) for extra information.
+Please check the [FAQ](../FAQ.md) for extra information.
 
 ## Initial Requirements:
 Working with this guide assumes you have the following:
