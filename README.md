@@ -20,7 +20,7 @@ Each link below will take you to all the appropriate guides for your Unreal Engi
 
 [Unreal Engine 4.27](Pixel%20Streaming%20UE4-27.md)
 
-[Unreal Engine 5](Pixel%20Streaming%20UE5.md) (Coming soon)
+[Unreal Engine 5](Pixel%20Streaming%20UE5.md)
 
 ## Legal 
 
