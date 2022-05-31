@@ -1,7 +1,7 @@
 # Pixel Streaming on AWS (Linux)
 
 ## Important Notes:
-This guide is made specifically for Unreal Engine 5 and will not work if you’re using any earlier versions.
+This guide is made specifically for Unreal Engine 5, other guides may not have the correct information due to script changes. 
 
 If you're interested in running an AWS Windows instance, please see the [Pixel Streaming on AWS (Windows)](Pixel%20Streaming%20on%20AWS%20(Windows).md) guide! 
 
