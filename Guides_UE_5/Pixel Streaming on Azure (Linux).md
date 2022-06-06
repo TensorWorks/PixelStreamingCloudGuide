@@ -224,7 +224,7 @@ Make sure to replace `AppFileName` with your unzipped file name!
 
 ## Skipping Setup Next Time
 Now that you have set up your instance, you can opt to create a custom AMI based on your set up! This will mean the next time you load up your AMI, it'll already have everything ready.
-If this interests you, please head over to the [FAQ](FAQ.md) for a walkthrough on how to do this. 
+If this interests you, please head over to the [FAQ](../FAQ.md) for a walkthrough on how to do this. 
 
 This is definitely not a mandatory step, and if you just want to do a quick test this time and set up something different next time, you can skip this step.
 
