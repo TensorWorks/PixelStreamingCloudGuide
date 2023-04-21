@@ -1,8 +1,3 @@
----
-title: UE Apps on CoreWeave
-pagenum: 1
----
-
 ## Setting up CoreWeave
 
 To start with, I suggest following the official Coreweave documentation for getting started with your Coreweave account and setting up your Kubernetes.
