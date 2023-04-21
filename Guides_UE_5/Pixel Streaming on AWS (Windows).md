@@ -115,6 +115,10 @@ Click create.
 
 You have now created an IAM role! Head back to your Configure Instance Details step and select your new IAM role under the IAM role dropdown menu.
 
+Once this is done, click the "Launch Instance" button on the right. This will create your instance and provide a link to view it!
+
+You'll need to wait a moment for the status check to read "2/2 checks passed" before attempting to connect, as before this it will still be setting itself up. This should not take long.
+
 ## Connecting to Your Instance
 
 Connecting to your Windows Instance is exceptionally easy if you're also running Windows!

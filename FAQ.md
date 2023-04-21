@@ -3,6 +3,7 @@
 This list is to help solve a variety of issues that you may stumble across. Some of this information is also mentioned in the guides, but is here for quicker reference.
 
 - [Frequently Asked Questions](#frequently-asked-questions)
+  - [Where do I get the Pixel Streaming servers and frontend?](#where-do-i-get-the-pixel-streaming-servers-and-frontend)
   - [How do I install Vulkan on Linux?](#how-do-i-install-vulkan-on-linux)
   - [How do I install Pulse Audio on Linux?](#how-do-i-install-pulse-audio-on-linux)
   - [How do I install Nvidia Drivers?](#how-do-i-install-nvidia-drivers)
@@ -35,6 +36,14 @@ This list is to help solve a variety of issues that you may stumble across. Some
   - [How do I stop the Pixel Stream from capturing and hiding my mouse?](#how-do-i-stop-the-pixel-stream-from-capturing-and-hiding-my-mouse)
   - [Why does my Bitrate drop heavily on an Android/Samsung mobile connected to Wifi?](#why-does-my-bitrate-drop-heavily-on-an-androidsamsung-mobile-connected-to-wifi)
 
+
+## Where do I get the Pixel Streaming servers and frontend?
+As of 5.1, we've moved the Pixel Streaming front end and web servers to their own repository on GitHub.
+This allows us to maintain more frequent updates of these elements, independant of the Unreal Engine release cadence. 
+
+Infrastructure Github: https://github.com/EpicGames/PixelStreamingInfrastructure
+
+**Note:** It's vital that you pull the branch that matches your Unreal Engine version (4.27 branch to 4.27 Unreal Engine)
 
 
 ## How do I install Vulkan on Linux?
@@ -262,68 +271,22 @@ When a WebRTC connection is not being made for whatever reason one key point of 
 
 
 ## How do I stop the Pixel Stream from capturing and hiding my mouse?
+With recent updates to the Pixel Streaming Infrastructure, this has never been easier!
 
-In some applications you may want your mouse to stay visible while interacting with the stream. As a large portion of applications in UE are first/third person, it will capture the windows mouse when you join the stream and make it invisible by default. Doing the following steps means you'll need to click and hold to turn the camera.
+Once you have a stream running and you are connected via browser as a peer, open the control panel (by clicking on the cog) and toggling "Control Scheme: Locked Mouse" to "Hovering Mouse". This will ensure your mouse remains visible whilst interacting with the stream.
 
-Firstly in your UE project do the following:
+Additionally, if you're using the Unreal Engine software cursor, you can use this setting (or the "Hide Browser Cursor" setting) to hide the Windows cursor.
 
-1. Open Edit > Project Settings > User Interface
-2. Head to the User Interface section
-3. Under Software Cursors, click +
-4. Select "Default" as the mouse option in the drop down and "HiddenCursor" under the second class dropdown.
+To enable the Unreal Engine software cursor you'll need to:
 
-This hides the default UE cursor. This is important as you will likely end up with 2 cursors at the same time (which is very disorientating).
+1. Open Project Settings > Engine - User Interface > Software Cursors.
 
-Secondly, you'll need to edit App.js. You can find it under Samples > PixelStreaming > WebServers > SignallingWebServer > Scripts.
+2. Add a new software cursor (click the + icon) and you'll see 2 dropdown fields. 
+3. In the first field, select "Default".
+4. In the second field select "DefaultCursor".
+5. Save project.
 
-Around line 850 of App.js there is some a segment that specifies ControlSchemeType as seen here:
-```js
-const ControlSchemeType = {
-    // A mouse can lock inside the WebRTC player so the user can simply move the
-    // mouse to control the orientation of the camera. The user presses the
-    // Escape key to unlock the mouse.
-    LockedMouse: 1
-
-    // A mouse can hover over the WebRTC player so the user needs to click and
-    // drag to control the orientation of the camera.
-    HoveringMouse: 0
-```
-
-Just below that is where there is an JS object where the control scheme is specified, like so:
-
-```js
-let inputOptions = {
-    // The control scheme controls the behaviour of the mouse when it interacts
-    // with the WebRTC player.
-    controlScheme: ControlSchemeType.LockedMouse,
-
-    // Browser keys are those which are typically used by the browser UI. We
-    // usually want to suppress these to allow, for example, UE4 to show shader
-    // complexity with the F5 key without the web page refreshing.
-    suppressBrowserKeys: true,
-
-    // UE4 has a faketouches option which fakes a single finger touch when the
-    // user drags with their mouse. We may perform the reverse; a single finger
-    // touch may be converted into a mouse drag UE4 side. This allows a
-    // non-touch application to be controlled partially via a touch device.
-    fakeMouseWithTouches: false
-};
-```
-
-You can set `controlScheme: ControlSchemeType.HoveringMouse` to ensure that it does not lock your mouse to the stream.
-
-Lastly, we need to ensure the mouse isn't hidden, head to around line 1550:
-
-```js
-function registerHoveringMouseEvents(playerElement) {
-    //styleCursor = 'none'; // We will rely on UE4 client's software cursor.
-    styleCursor = 'default';  // Showing cursor
-```
-You'll notice that `styleCursor = none` is commented out by default. Uncomment this line, and comment `styleCursor = default`. This will ensure that we are using the default windows cursor.
-
-Now if you start your stream, when you click to join the mouse should stay visible. 
-
-If you want to solely use the UE default cursor, you can simply reverse these steps! Make sure you don't add the HiddenCursor class to the DefaultCursor!
+Now when you run your application, you'll have the Unreal Engine cursor enabled. If you don't hide the Windows cursor via the stream control panel, you'll have 2 visible cursors.
 
 
 ## Why does my Bitrate drop heavily on an Android/Samsung mobile connected to Wifi?

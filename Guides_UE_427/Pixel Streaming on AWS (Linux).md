@@ -31,45 +31,99 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html
 
 This link also describes SSH, which we will be using in this guide.
 
-## Setting up your AWS server
+## Setting up Your AWS server
 Log into your AWS account.
 
-Select Launch a Virtual Machine.
+At the top left, click Services > Compute > EC2
 
-Select your AMI, I recommend the `Deep Learning AMI Ubuntu 18.04`, if you use a different AMI it is your responsibility to install the correct NVIDIA drivers and CUDA Toolkit.
+Select Launch Instance
 
-Choose an Instance Type.
+This resulting page is where you will configure all the details of your AWS instance. For this example setup, we'll be fairly open with our security permissions.
+The following steps will work through this page and help you to create a solid, basic instance:
 
-Filter by **g4dn**, for the Unreal Pixel Streaming Demo I recommend the **8 vCPUs 32 GiB** option.
+### Name and Tags
+Create a simple name for your instance. This is optional, but very beneficial if you have multiple instances active.
+It may be a good habit to name all your instances, as the list can get rather extensive, depending on your uses for AWS.
 
-For this example, you can skip steps up until step 6.
+### Application and OS Images (Amazon Machine Image)
+This is where we select the OS and version of our upcoming instance.
 
-### Step 6, Configure Security Groups
+Under the Quick Start category, select Ubuntu. You may get a pop up stating that "Some of your current settings will be changed or removed if you proceed". It's fine to click Confirm Changes here.
 
-Leave the existing rule and add 2 new rules:
-```
-HTTP, TCP, 80, Custom, 0.0.0.0/0,::/0
-```
-```
-Custom TCP, TCP, 8888, Custom, 0.0.0.0/0,::/0
-```
+With the drop down beneath "Amazon Machine Image (AMI)", select "Ubuntu Server 22.04 LTS (HVM), SSD Volume Type".
 
-Setting `0.0.0.0/0,::/0` will permit all IP addresses to connect to the instance. Please specify any restrictions as needed. For this test, you can safely permit all IP addresses.
+### Instance Type
+Here, we'll select our resources the instance will use. This is a combination of CPU, memory, storage and networking capacity.
 
-Review and launch, make sure to read the warnings before proceeding. Once you're satisfied, hit launch.
+Select the drop down and select `g4dn.xlarge`. It may help to search for `g4` in the search bar.
+If you're running a more intensive application, or need more processing power, you can select `g4dn.2xlarge`.
 
-Choose either an existing key pair, or create a new key pair.
-*Do not lose the key pair file provided!* You can not retrieve it and will have to create a new one if you do.
+For most basic use cases, the `g4dn.xlarge` instance should be sufficient.
 
-Head to the View Instances page.
+### Key Pair
+If you've gone through these steps before, simply click the drop down and choose your previously made key pair file. You can now skip the remainder of this step.
 
-Give the instance time to finish its status checks, you can spend this time by checking the instance details by checking its tick box.
-It may be worth copying the following into a doc, as you’ll need these values.
+To create a key pair file, select "Create new key pair".
 
-- Public IPv4 DNS
-- Public IPv4 Address
+In this resulting window, enter a suitable key pair name (It's good to have distinguishable names if you plan to have many different types of instances).
 
-You’ll be using the public IPv4 address to connect to the instance application once it’s up and running.
+For your private key file format, you may select either, though if you're not using PuTTY I would suggest using .pem.
+
+Hit "Create key pair"
+
+It will immediately download your new key pair file. Keep this file stored securely and do **not** lose this file! If you lose this file you will be unable to use this key pair and will be forced to create a new one.
+
+Make sure your newly created key pair is selected in the drop down.
+
+### Network Settings
+Now we'll specify the open ports and connectivity of the instance.
+
+Select Edit in the Network Settings window.
+
+If you have done these steps before and previously created a security group, simply choose "Select existing security group" and choose your previously made option under "Common Security Groups". Move on to the next step.
+
+For this example instance, we're going to create a security group that permits all connections. In future, you'll likely want to be more restrictive in your security group. We can however, use this open security group for testing in future!
+
+You can leave VPC, Subnet and Auto-assign public IP as their default values.
+
+Select "Create security group"
+
+Under security group name, name it accordingly (e.g. "allow-everything")
+
+You can leave the description as default.
+
+Under the "Type" drop down, select `"All Traffic"`. For `"Source Type"`, select `"Anywhere"`
+
+With these values set, move on to the next step.
+
+### Configure Storage
+Here we'll specify the amount of storage space on the drive. Free tier customers get up to 30gb, so we'll set for that.
+
+Enter `30` for the GiB value, leave the Root volume as `gp2`.
+
+### Advanced Details
+We only need to change one setting in this category.
+In order to correctly install the relevant drivers on your instance, we must ensure we have the right permissions.
+
+Next to IAM instance profile, select "Create new IAM Profile"
+
+On the resulting page, click Create Role, this will take you to a creation page.
+
+Select EC2 under *Common Use Cases* and click Next at the bottom of the page.
+
+Filter policies by `AmazonS3ReadOnlyAccess` and select that policy, then click next.
+
+Skip the tags step.
+
+Fill in the review page appropriately, it's important to specify a useful name so you know which IAM you're selecting when you start the instance. For example, you could call this one `"AllowGRIDDrivers"`.
+
+Click create.
+
+You have now created an IAM role! Head back to your Configure Instance Details step and select your new IAM role under the IAM role dropdown menu.
+
+Once this is done, click the "Launch Instance" button on the right. This will create your instance and provide a link to view its details.
+
+You'll need to wait a moment for the status check to read "Ready" before attempting to connect, as before this it will still be setting itself up. This should not take long.
 
 ## Transferring Pixel Streaming Demo/Application onto the Instance
 
