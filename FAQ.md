@@ -153,11 +153,34 @@ Done! As you are charged for the storage of your AMI, make sure to check any ext
 
 ### Google Cloud Platform
 
-Coming Soon!
+* Go to your VM instances list.
+* Click the triple dots next to the instance you wish to create an image of.
+* Click "Create new machine image"
+* Create a suitable name for your instance (You can not change this later, so make it a suitable name!)
+* Create a description, I highly recommend listing what you have set up on the instance e.g. "NodeJS, Cirrus, GRID Drivers" etc.
+* Specify your desired region and encryption
+* Click Create
+
+Done!
+
+Ensure you read the following page on any costs related to your image:
+https://cloud.google.com/compute/disks-image-pricing
 
 ### Microsoft Azure
 
-Coming Soon!
+* Open the overview panel for your created instance.
+* At the top of the window, click the "Capture" option.
+* Specify which resource group you want this to be a part of.
+* Select either an existing computer gallery, or hit "Create new" if you do not have one prior.
+* Select an existing VM image definition, or hit "Create new". Enter the VM name you wish to save it as. You can leave the other values default if desired. Then click OK.
+* Enter a version number you wish to mark the instance as (it needs to follow a x.x.x format)
+* Specify a default replica count.
+* Hit review + create
+* Click create
+
+Done!
+
+You can refer to pricing for maintaining images and disks here: https://azure.microsoft.com/en-gb/pricing/details/managed-disks/ 
 
 ## When I try to connect to the instance through my web browser, nothing shows up/it times out!
 
