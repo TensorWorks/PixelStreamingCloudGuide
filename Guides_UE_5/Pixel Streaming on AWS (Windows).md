@@ -203,13 +203,13 @@ For this scenario, as we are running a "g4dn" instance, the correct driver is as
 
 ## Setting up Your Signalling Server
 
-Head to your projects cmd directory, found in:
+Head to your projects WebServers directory, found in:
 
 ```
-WindowsNoEditor\Samples\PixelStreaming\WebServers\SignallingWebServer\platform_scripts\cmd
+\ProjectName\Windows\ProjectName\Samples\PixelStreaming\WebServers
 ```
 
-You'll see a variety of files in here, you can always refer to the README in this folder to see what each of them do. But our first step is to install the pre-requisites to run a signalling server!
+If you had already used the “get_ps_scripts” script in your Engine directory, you should already have all required Pixel Streaming scripts in the above directory. If not, you’ll simply need to run the “get_ps_scripts.bat” script. This will download everything you need.
 
 With UE5, we've massively simplified the setup for your signalling server. Simply double-click `setup.bat` and it will automatically install CoTURN and the node prerequisites in this directory. If setup has worked as normal, you'll now see a coturn and node file in this directory.
 
@@ -236,7 +236,7 @@ Head back to your applications folder where the .exe is found (default folder is
 Right click on the shortcut, and copy paste the following onto the *end* of the target parameter:
 
 ```
--PixelStreamingIP=127.0.0.1 -PixelStreamingPort=8888 -RenderOffscreen -ResX=1920 -ResY=1080 -ForceRes
+-PixelStreamingURL=ws://127.0.0.1:8888 -RenderOffscreen -AllowPixelStreamingCommands
 ```
 
 This forces the application to render off-screen, which is vitally important when cloud streaming. Failing to do so will cause the instance to use more resources rendering the application locally, rather than only on the stream.
