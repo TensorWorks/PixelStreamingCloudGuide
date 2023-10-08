@@ -247,8 +247,9 @@ Done! Simply reconnect and your instance should be ready to go with Nvidia drive
 If you don't want to use GRID drivers, you can also use the Nvidia public drivers. You can do this easily via the following.
 
 1. Navigate to https://www.nvidia.com/Download/Find.aspx 
-2. Refer to the following to search for the appropriate product type: ![Instance Types](AWS_CardTypes.png)
-   1. **Note** You should always try and use the latest drivers.
+2. Refer to the following to search for the appropriate product type:
+   1. ![](../Guides_UE_5/AWS_CardTypes.png)
+   2. **Note** You should always try and use the latest drivers.
 3. Use the following guide to install your newly downloaded driver: https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html 
 
 ### Installing Vulkan
