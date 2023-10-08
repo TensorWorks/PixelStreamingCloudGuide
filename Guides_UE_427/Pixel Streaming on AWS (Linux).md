@@ -176,11 +176,84 @@ Done!
 ## Preparing Prerequisites
 
 Now that you’re connected to your AWS instance, you’ll need to prepare a few packages so your application can run.
-These packages may vary depending on your needs, but for this example we need Vulkan and Pulse Audio. 
+These packages may vary depending on your needs, but for this example we need the Nvidia Drivers, Vulkan and Pulse Audio. 
 
+### Installing Nvidia Drivers (GRID)
+First and foremost, we need Nvidia drivers to run our packaged game. 
+Although I recommend the GRID drivers, you can skip this section and follow the steps to install basic, public Nvidia drivers further below.
+
+1. Install `gcc` and `make` on your instance
+   1. `$ sudo apt install gcc`
+   2. `$ sudo apt install make`
+
+2. Update your package cache and get the package updates for your instance
+   1. `$ sudo apt-get update -y`
+
+3. Upgrade the `linux-aws` package to receive the latest version:
+   1. `$ sudo apt-get upgrade -y linux-aws`
+   2. Click enter through any prompts to finish the install
+
+4. Reboot your instance
+   1. `$ sudo reboot`
+   2. Reconnect once the reboot is complete
+
+5. Run the following command to ensure the gcc compiler and kernal headers package for your kernal version are running:
+   1. `$ sudo apt-get install -y gcc make linux-headers-$(uname -r)`
+
+6. Disable the `nouveau` open source Nvidia driver:
+   1. Add `nouveau` to the `/etc/modprobe.d/blackist.conf` file using the following code block:
+   ```
+   $ cat << EOF | sudo tee --append /etc/modprobe.d/blacklist.conf
+   blacklist vga16fb
+   blacklist nouveau
+   blacklist rivafb
+   blacklist nvidiafb
+   blacklist rivatv
+   EOF
+   ```
+   2. Edit the `/etc/default/grub` file:
+   `$ cd /etc/default`
+   `$ nano grub`
+   Add the line: `GRUB_CMDLINE_LINUX="rdblacklist=nouveau"`
+   3. Rebuild the Grub configuration:
+   `$ sudo update-grub`
+
+7. Install the AWS cli tool:
+   1. `$ sudo apt install awscli`
+8. Install the GRID driver installation utility:
+   1. `$ aws s3 cp --recursive s3://ec2-linux-nvidia-drivers/latest/ .`
+   2. **Note**, if you want to install a different version, you can get a full list of all available driver versions in that bucket via the following: `$ aws s3 ls --recursive s3://ec2-linux-nvidia-drivers/`
+
+9.  Add permissions to run the driver installation utility:
+   1.  `$ chmod +x NVIDIA-Linux-x86_64*.run`
+
+10. Run the install script to install the GRID driver you downloaded:
+    1.  `$ sudo /bin/sh ./NVIDIA-Linux-x86_64*.run`
+    2.  You'll be prompted to accept the license agreement and select install options. You can simply accept all the default values.
+
+11. Confirm the driver is installed and functional:
+    1.  `$ nvidia-smi -q | head`
+
+12. If you're using Nvidia vGPU software equal or greater than version 14.x on G4dn, G5 or G5g instances, you need to disable GSP:
+    1.  `$ sudo touch /etc/modprobe.d/nvidia.conf`
+    2.  `$ echo "options nvidia NVreg_EnableGpuFirmware=0" | sudo tee --append /etc/modprobe.d/nvidia.conf`
+    3.  For more information on why this is important, refer to this page here: https://docs.nvidia.com/grid/latest/grid-vgpu-user-guide/index.html#disabling-gsp
+
+13. Reboot the instance:
+    1.  `$ sudo reboot`
+
+Done! Simply reconnect and your instance should be ready to go with Nvidia drivers installed.
+
+### Installing Nvidia Public Drivers
+If you don't want to use GRID drivers, you can also use the Nvidia public drivers. You can do this easily via the following.
+
+1. Navigate to https://www.nvidia.com/Download/Find.aspx 
+2. Refer to the following to search for the appropriate product type: ![Instance Types](AWS_CardTypes.png)
+   1. **Note** You should always try and use the latest drivers.
+3. Use the following guide to install your newly downloaded driver: https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html 
 
 ### Installing Vulkan
-As stated earlier, the Deep Learning instance we’re using already has the required nvidia drivers, but we still need to install Vulkan.
+Although we have installed the Nvidia drivers, we still need to install Vulkan.
 In either of your terminals connected to the instance, type the following: 
 
 ```
@@ -197,7 +270,7 @@ Similar to above, enter the following:
 sudo apt-get install -y pulseaudio
 ```
 
-(This is really only needed if your project has sound. The pixel streaming demo from Epic does not include any audio.)
+(This is really only needed if your project has sound.)
  
 
 ## Preparing Your Files
